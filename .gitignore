@@ -1,0 +1,5 @@
+node_modules/
+.idea/
+screenshots/
+yarn-error.log
+.env
