@@ -10,7 +10,7 @@ const password = process.env.PASSWORD_GOOGLE;
  * @returns
  */
 async function openBrowser() {
-  console.info('Executando a abertura do browser');
+  console.info('[OPEN_BROWSER] Executando a abertura do browser');
 
   const browser = await firefox.launch({ headless : false});
 
@@ -24,11 +24,11 @@ async function openBrowser() {
  * @param {*} page
  */
 async function navigate(page) {
-  console.info('Navegando para página de login');
+  console.info('[NAVIGATE] Navegando para página de login');
 
   await page.goto('https://www.udemy.com/?locale=pt_BR');
 
-  console.info('Clicando em Login');
+  console.info('[NAVIGATE] Clicando em Login');
 
   await page.click('text=Fazer login');
 }
@@ -40,7 +40,7 @@ async function navigate(page) {
 async function login(page) {
   await page.waitForTimeout(5000);
 
-  console.info('Realizando login com conta google');
+  console.info('[LOGIN] Realizando login com conta google');
 
   const [ frameGoogle ] = await Promise.all([
     page.waitForEvent('popup'),
@@ -60,7 +60,9 @@ async function login(page) {
 
   await frameGoogle.click('button:has-text("Próxima")')
 
-  console.info('Login realizado com sucesso');
+  await page.waitForTimeout(5000);
+
+  console.info('[LOGIN] Login realizado com sucesso');
 }
 
 /**
@@ -68,7 +70,7 @@ async function login(page) {
  * @param {*} page
  */
 async function search(page) {
-  console.info('[] Excutado busca por um curso');
+  console.info('[SEARCH] Excutado busca por um curso');
 
   await page.click('[placeholder="Pesquisar por qualquer coisa"]');
 
@@ -78,7 +80,7 @@ async function search(page) {
 
   await page.waitForTimeout(5000);
 
-  console.info('Finalizado busca');
+  console.info('[SEARCH] Finalizado busca');
 }
 
 /**

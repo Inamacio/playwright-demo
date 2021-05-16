@@ -37,7 +37,10 @@ Execute test. Test example
 yarn test
 ```
 
-
+Generate cod. Example, change the URL to test on a website of your choice
+```
+npx playwright codegen https://www.udemy.com/?locale=pt_BR
+```
 
 ## Usage
 
